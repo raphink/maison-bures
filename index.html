@@ -151,6 +151,7 @@
     .pc .pl { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--green); margin-bottom: 6px; }
     .pc .pv { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--green-dark); }
     .pc .ps { font-size: .82rem; color: var(--muted); margin-top: 5px; }
+    .btn img, .al img { width: 16px; height: 16px; border-radius: 3px; flex-shrink: 0; }
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 100px; font-size: .875rem; font-weight: 600; cursor: pointer; transition: all .2s; border: 2px solid transparent; }
     .bg  { background: var(--green); color: white; }
     .bg:hover { background: var(--green-dark); color: white; text-decoration: none; }
@@ -225,8 +226,8 @@
       <h1>Travailler à Paris&#8209;Saclay,<br>rentrer dans un jardin vivant.</h1>
       <p class="ht">À deux pas de la forêt de Chevreuse, à 10 minutes du RER B en bus — sans voiture.</p>
       <div class="hs">
-        <div class="sv"><b id="ss">—</b><small>m² hab.</small></div>
-        <div class="sv"><b id="sp">—</b><small>Pièces</small></div>
+        <div class="sv"><b id="ss">105</b><small>m² hab.</small></div>
+        <div class="sv"><b id="sp">7</b><small>Pièces</small></div>
         <div class="sv"><b>436&thinsp;800&nbsp;€</b><small>Prix FAI</small></div>
         <div class="sv"><b>RER B</b><small>10 min en bus</small></div>
       </div>
@@ -372,18 +373,18 @@
           <tr><td>Commune</td><td>Bures-sur-Yvette (91440), quartier Montjay</td></tr>
           <tr><td>Surface habitable</td><td>105 m²</td></tr>
           <tr><td>Surface terrain</td><td>489 m²</td></tr>
-          <tr><td>Pièces</td><td><!-- TODO --></td></tr>
-          <tr><td>Chambres</td><td><!-- TODO --></td></tr>
-          <tr><td>Niveaux</td><td><!-- TODO --></td></tr>
-          <tr><td>Année de construction</td><td><!-- TODO --></td></tr>
+          <tr><td>Pièces</td><td>7</td></tr>
+          <tr><td>Chambres</td><td>4</td></tr>
+          <tr><td>Niveaux</td><td>2</td></tr>
+          <tr><td>Année de construction</td><td>1976</td></tr>
           <tr><td>Chauffage</td><td>Électrique — panneaux rayonnants</td></tr>
-          <tr><td>Eau chaude</td><td><!-- TODO --></td></tr>
+          <tr><td>Eau chaude</td><td>Électrique</td></tr>
           <tr><td>Cuisine</td><td>Équipée, gaz</td></tr>
           <tr><td>Sous-sol</td><td>Cave + vide sanitaire (3/4 de la surface)</td></tr>
-          <tr><td>Stationnement</td><td><!-- TODO --></td></tr>
+          <tr><td>Stationnement</td><td>Placette + jardin + garage fermé</td></tr>
           <tr><td>Jardin</td><td>Oui — avec mare naturelle</td></tr>
-          <tr><td>DPE</td><td><!-- TODO --></td></tr>
-          <tr><td>GES</td><td><!-- TODO --></td></tr>
+          <tr><td>DPE</td><td>E</td></tr>
+          <tr><td>GES</td><td>C</td></tr>
           <tr><td>Taxe foncière</td><td><!-- TODO --> €/an</td></tr>
         </table>
         <div class="sn">
@@ -400,10 +401,10 @@
           <p class="pv">436 800 €</p>
           <p class="ps">Dont 16 800 € TTC d'honoraires (4%)</p>
         </div>
-        <a href="https://www.seloger.com/annonces/achat/maison/bures-sur-yvette-91/montjoy-coins/268338993.htm"
-           target="_blank" rel="noopener" class="btn bg">Annonce ERA — SeLoger ↗</a>
-        <!-- TODO: lien agence 2 -->
-        <!-- TODO: lien agence 3 -->
+        <a href="https://www.eraimmobilier.com/agence-immobiliere-gif-sur-yvette-444/annonces/500911"
+           target="_blank" rel="noopener" class="btn bg"><img src="https://www.google.com/s2/favicons?domain=eraimmobilier.com&sz=32" alt="">ERA ↗</a>
+        <a href="https://fr.foncia.com/achat/bures-sur-yvette-91440/maison/00763059.htm"
+           target="_blank" rel="noopener" class="btn bg"><img src="https://www.google.com/s2/favicons?domain=foncia.com&sz=32" alt="">Foncia ↗</a>
       </div>
     </div>
   </div>
@@ -441,8 +442,11 @@
     <p class="psub">Prix net vendeur : <strong>420 000 €</strong> — Honoraires acquéreur : 16 800 € TTC (4%)</p>
     <div class="ctas">
       <a href="https://www.seloger.com/annonces/achat/maison/bures-sur-yvette-91/montjoy-coins/268338993.htm"
-         target="_blank" rel="noopener" class="btn bw">Annonce ERA — SeLoger ↗</a>
-      <!-- TODO: agences 2 et 3 -->
+         target="_blank" rel="noopener" class="btn bw"><img src="https://www.google.com/s2/favicons?domain=seloger.com&sz=32" alt="">ERA — SeLoger ↗</a>
+      <a href="https://www.eraimmobilier.com/agence-immobiliere-gif-sur-yvette-444/annonces/500911"
+         target="_blank" rel="noopener" class="btn bw"><img src="https://www.google.com/s2/favicons?domain=eraimmobilier.com&sz=32" alt="">ERA — Site direct ↗</a>
+      <a href="https://fr.foncia.com/achat/bures-sur-yvette-91440/maison/00763059.htm"
+         target="_blank" rel="noopener" class="btn bw"><img src="https://www.google.com/s2/favicons?domain=foncia.com&sz=32" alt="">Foncia ↗</a>
     </div>
   </div>
 </section>
@@ -459,9 +463,11 @@
       <div class="fag">
         <h4>Agences mandatées</h4>
         <a href="https://www.seloger.com/annonces/achat/maison/bures-sur-yvette-91/montjoy-coins/268338993.htm"
-           target="_blank" rel="noopener" class="al">ERA — À La Clef des Champs (SeLoger) ↗</a>
-        <!-- TODO: Agence 2 -->
-        <!-- TODO: Agence 3 -->
+           target="_blank" rel="noopener" class="al"><img src="https://www.google.com/s2/favicons?domain=seloger.com&sz=32" alt="">ERA — À La Clef des Champs (SeLoger) ↗</a>
+        <a href="https://www.eraimmobilier.com/agence-immobiliere-gif-sur-yvette-444/annonces/500911"
+           target="_blank" rel="noopener" class="al"><img src="https://www.google.com/s2/favicons?domain=eraimmobilier.com&sz=32" alt="">ERA — Site direct ↗</a>
+        <a href="https://fr.foncia.com/achat/bures-sur-yvette-91440/maison/00763059.htm"
+           target="_blank" rel="noopener" class="al"><img src="https://www.google.com/s2/favicons?domain=foncia.com&sz=32" alt="">Foncia ↗</a>
       </div>
     </div>
     <p class="fleg">Informations à titre indicatif. Se référer aux annonces des agences mandatées pour les données officielles. Photos réelles uniquement.</p>
