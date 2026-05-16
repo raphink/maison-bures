@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison à vendre — Bures-sur-Yvette, Vallée de Chevreuse | RER B</title>
+  <meta name="description" content="Maison familiale à vendre à Bures-sur-Yvette (91), quartier Montjay. Jardin avec mare, forêt à 5 min, RER B à 10 min en bus. 436 800 € FAI.">
+  <meta property="og:title" content="Maison à vendre — Bures-sur-Yvette, Vallée de Chevreuse">
+  <meta property="og:description" content="Jardin vivant, forêt à 5 min, RER B à 10 min en bus. 436 800 € FAI.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://maison-bures.fr">
+  <link rel="canonical" href="https://maison-bures.fr">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green:       #3a6b35;
+      --green-dark:  #28502a;
+      --green-light: #eaf4e8;
+      --amber:       #bf7b14;
+      --amber-bg:    #fdf8ee;
+      --bg:          #f7f4f0;
+      --white:       #ffffff;
+      --text:        #1c1c1c;
+      --muted:       #5e5e5e;
+      --border:      #e0d9d1;
+      --r:           14px;
+      --r-sm:        8px;
+      --shadow:      0 2px 20px rgba(0,0,0,.07);
+      --shadow-lg:   0 8px 40px rgba(0,0,0,.13);
+      --max:         1100px;
+      --sp:          80px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .c { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 14px 0; transition: background .3s, box-shadow .3s;
+    }
+    #nav.solid {
+      background: rgba(255,255,255,.97);
+      box-shadow: 0 1px 14px rgba(0,0,0,.08);
+      backdrop-filter: blur(8px);
+    }
+    .nw  { display: flex; align-items: center; justify-content: space-between; }
+    .nb  { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: white; transition: color .3s; }
+    #nav.solid .nb { color: var(--green-dark); }
+    .nl  { display: flex; gap: 28px; list-style: none; }
+    .nl a {
+      font-size: .84rem; font-weight: 500; color: rgba(255,255,255,.88);
+      transition: color .2s; letter-spacing: .02em;
+    }
+    #nav.solid .nl a { color: var(--text); }
+    .nl a:hover { color: var(--green); text-decoration: none; }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh; position: relative;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      background: var(--green-dark) center/cover no-repeat;
+    }
+    .ho { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.15) 0%, rgba(0,0,0,.06) 35%, rgba(0,0,0,.7) 100%); }
+    .hb { position: relative; z-index: 1; color: white; }
+    .hi { padding: 0 24px 52px; max-width: var(--max); margin: 0 auto; }
+    .hey { font-size: .73rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; opacity: .72; margin-bottom: 12px; }
+    h1   { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5.5vw, 3.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 14px; }
+    .ht  { font-size: clamp(.95rem, 2vw, 1.2rem); font-weight: 300; opacity: .88; max-width: 580px; margin-bottom: 36px; }
+    .hs  { display: inline-flex; flex-wrap: wrap; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(12px); border-radius: var(--r); overflow: hidden; }
+    .sv  { padding: 13px 24px; text-align: center; border-right: 1px solid rgba(255,255,255,.15); }
+    .sv:last-child { border-right: none; }
+    .sv b     { display: block; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; }
+    .sv small { font-size: .66rem; text-transform: uppercase; letter-spacing: .1em; opacity: .68; }
+
+    /* ── SECTION HEADERS ────────────────────────────────────── */
+    .sh    { text-align: center; margin-bottom: 52px; }
+    .ey    { font-size: .71rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+    .sh h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 700; margin-bottom: 12px; }
+    .sh p  { font-size: .98rem; color: var(--muted); max-width: 520px; margin: 0 auto; }
+
+    /* ── HISTOIRE ───────────────────────────────────────────── */
+    #histoire { padding: var(--sp) 0; background: var(--white); }
+    .sg   { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .st p { font-size: 1rem; color: var(--muted); margin-bottom: 16px; }
+    .st p:first-child { font-size: 1.15rem; color: var(--text); }
+    .hls  { display: flex; flex-direction: column; gap: 14px; }
+    .hl   { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; background: var(--green-light); border-radius: var(--r-sm); border-left: 3px solid var(--green); }
+    .hli  { font-size: 1.35rem; flex-shrink: 0; line-height: 1.6; }
+    .hlt strong { display: block; font-size: .9rem; font-weight: 600; color: var(--green-dark); margin-bottom: 2px; }
+    .hlt span   { font-size: .82rem; color: var(--muted); }
+
+    /* ── PHOTOS ─────────────────────────────────────────────── */
+    #photos      { padding: 60px 0; background: var(--green-dark); }
+    #photos .ey  { color: rgba(255,255,255,.45); }
+    #photos .sh h2 { color: white; }
+    .crw { position: relative; }
+    .crm { max-width: 900px; margin: 0 auto; aspect-ratio: 16/9; border-radius: var(--r); overflow: hidden; background: #0e1e0e; box-shadow: var(--shadow-lg); position: relative; }
+    .crs { position: absolute; inset: 0; opacity: 0; transition: opacity .55s; }
+    .crs.on { opacity: 1; }
+    .crs img { width: 100%; height: 100%; object-fit: cover; }
+    .crph {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #2a5028, #1a301a);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.3); font-size: .88rem; text-align: center; padding: 24px;
+    }
+    .crph code { font-size: .85em; background: rgba(255,255,255,.1); padding: 2px 6px; border-radius: 4px; }
+    .crb { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(4px); color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; z-index: 5; }
+    .crb:hover { background: rgba(255,255,255,.27); }
+    .crb.pv { left: -21px; }
+    .crb.nx { right: -21px; }
+    .crd    { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+    .crdot  { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.3); border: none; cursor: pointer; transition: background .2s, transform .2s; }
+    .crdot.on { background: white; transform: scale(1.35); }
+    .crn    { text-align: center; color: rgba(255,255,255,.38); font-size: .75rem; margin-top: 8px; }
+
+    /* ── ATOUTS ─────────────────────────────────────────────── */
+    #atouts { padding: var(--sp) 0; background: var(--bg); }
+    .ag { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .ac { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); padding: 26px 22px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s; }
+    .ac:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .aci { font-size: 1.9rem; margin-bottom: 14px; }
+    .ac h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .ac ul { list-style: none; font-size: .83rem; color: var(--muted); line-height: 2; }
+    .ac ul li::before { content: '→ '; color: var(--green); font-weight: 600; }
+
+    /* ── CARACTÉRISTIQUES ───────────────────────────────────── */
+    #caracteristiques { padding: var(--sp) 0; background: var(--white); }
+    .spg { display: grid; grid-template-columns: 3fr 2fr; gap: 52px; align-items: start; }
+    table.spt { width: 100%; border-collapse: collapse; }
+    .spt tr { border-bottom: 1px solid var(--border); }
+    .spt tr:last-child { border-bottom: none; }
+    .spt td { padding: 11px 4px; font-size: .87rem; vertical-align: top; }
+    .spt td:first-child { color: var(--muted); width: 47%; }
+    .spt td:last-child  { font-weight: 600; }
+    .sn { margin-top: 18px; padding: 14px 16px; background: var(--amber-bg); border-left: 3px solid var(--amber); border-radius: var(--r-sm); font-size: .82rem; color: var(--muted); }
+    .pa { display: flex; flex-direction: column; gap: 18px; }
+    .pc { background: var(--green-light); border: 1px solid #b3d9ae; border-radius: var(--r); padding: 22px; }
+    .pc .pl { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--green); margin-bottom: 6px; }
+    .pc .pv { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--green-dark); }
+    .pc .ps { font-size: .82rem; color: var(--muted); margin-top: 5px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 100px; font-size: .875rem; font-weight: 600; cursor: pointer; transition: all .2s; border: 2px solid transparent; }
+    .bg  { background: var(--green); color: white; }
+    .bg:hover { background: var(--green-dark); color: white; text-decoration: none; }
+    .bw  { background: white; color: var(--green-dark); }
+    .bw:hover { background: var(--green-light); color: var(--green-dark); text-decoration: none; }
+
+    /* ── CARTE ──────────────────────────────────────────────── */
+    #carte { padding: var(--sp) 0; background: var(--bg); }
+    #map   { height: 460px; border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; }
+    .ml    { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: .79rem; color: var(--muted); }
+    .li    { display: flex; align-items: center; gap: 6px; }
+    .ld    { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── PRIX ───────────────────────────────────────────────── */
+    #prix { padding: var(--sp) 0; background: var(--green-dark); color: white; text-align: center; }
+    #prix .ey    { color: rgba(255,255,255,.45); }
+    #prix .sh h2 { color: white; }
+    .pb   { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 700; }
+    .plb  { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; opacity: .5; margin: 4px 0 16px; }
+    .psub { font-size: 1rem; opacity: .75; margin-bottom: 36px; }
+    .psub strong { opacity: 1; }
+    .ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer { background: #111; color: rgba(255,255,255,.5); padding: 52px 0 28px; }
+    .fg   { display: grid; grid-template-columns: 1fr auto; gap: 32px; margin-bottom: 36px; }
+    .fbr  { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 8px; }
+    .fsu  { font-size: .82rem; line-height: 1.7; }
+    .fag h4 { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.32); margin-bottom: 14px; text-align: right; }
+    .al   { display: flex; align-items: center; justify-content: flex-end; gap: 6px; color: rgba(255,255,255,.58); font-size: .84rem; margin-bottom: 8px; transition: color .2s; }
+    .al:hover { color: white; text-decoration: none; }
+    .fleg { padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); font-size: .72rem; text-align: center; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      :root { --sp: 52px; }
+      .nl { display: none; }
+      .sg, .spg { grid-template-columns: 1fr; gap: 32px; }
+      .ag { grid-template-columns: 1fr 1fr; }
+      .crb.pv { left: 8px; }
+      .crb.nx { right: 8px; }
+      .fg { grid-template-columns: 1fr; }
+      .fag h4, .al { text-align: left; justify-content: flex-start; }
+    }
+    @media (max-width: 520px) {
+      .ag { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="c nw">
+    <span class="nb">maison-bures.fr</span>
+    <ul class="nl">
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#atouts">Atouts</a></li>
+      <li><a href="#caracteristiques">Caractéristiques</a></li>
+      <li><a href="#carte">Carte</a></li>
+      <li><a href="#prix">Prix</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<header id="hero">
+  <div class="ho"></div>
+  <div class="hb">
+    <div class="hi">
+      <p class="hey">À vendre — Bures-sur-Yvette (91), quartier Montjay</p>
+      <h1>Travailler à Paris&#8209;Saclay,<br>rentrer dans un jardin vivant.</h1>
+      <p class="ht">À deux pas de la forêt de Chevreuse, à 10 minutes du RER B en bus — sans voiture.</p>
+      <div class="hs">
+        <div class="sv"><b id="ss">—</b><small>m² hab.</small></div>
+        <div class="sv"><b id="sp">—</b><small>Pièces</small></div>
+        <div class="sv"><b>436&thinsp;800&nbsp;€</b><small>Prix FAI</small></div>
+        <div class="sv"><b>RER B</b><small>10 min en bus</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── HISTOIRE ────────────────────────────────────────────── -->
+<section id="histoire">
+  <div class="c">
+    <div class="sg">
+      <div class="st">
+        <p>Imaginez rentrer chaque soir du plateau de Saclay ou de Paris dans un jardin où des tritons côtoient les têtards, où une trentaine d'espèces d'oiseaux nichent au fil des saisons.</p>
+        <p>Cette maison du quartier Montjay est posée à l'entrée de la vallée de Chevreuse, à 5 minutes à pied de la forêt de Bures et à 10 minutes du viaduc des Fauvettes — haut lieu de l'escalade en Île-de-France et d'une coulée verte unique.</p>
+        <p>Le RER B est accessible en 10 minutes (4 min à pied jusqu'à l'arrêt, 2 min de bus, 4 min à pied jusqu'au quai), ou à 25 minutes à pied. Les écoles sont accessibles à pied ou par bus dédié. Paris, Saclay, Massy — tout cela sans voiture.</p>
+      </div>
+      <div class="hls">
+        <div class="hl">
+          <div class="hli">🌲</div>
+          <div class="hlt"><strong>Forêt à 5 min à pied</strong><span>Forêt de Bures, viaduc des Fauvettes, coulée verte</span></div>
+        </div>
+        <div class="hl">
+          <div class="hli">🚆</div>
+          <div class="hlt"><strong>Paris centre en 1 h — sans voiture</strong><span>Bus 4 min à pied · RER B depuis Bures · Châtelet</span></div>
+        </div>
+        <div class="hl">
+          <div class="hli">🔬</div>
+          <div class="hlt"><strong>Paris-Saclay en 15–25 min</strong><span>CEA, Université Paris-Saclay, Courtaboeuf, Massy en bus</span></div>
+        </div>
+        <div class="hl">
+          <div class="hli">🐸</div>
+          <div class="hlt"><strong>Biodiversité exceptionnelle</strong><span>Mare avec tritons et têtards · ~30 espèces d'oiseaux</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHOTOS ───────────────────────────────────────────────── -->
+<section id="photos">
+  <div class="c">
+    <div class="sh">
+      <p class="ey">Galerie</p>
+      <h2>La maison en images</h2>
+    </div>
+    <div class="crw">
+      <div class="crm" id="cr"></div>
+      <button class="crb pv" id="crpv" aria-label="Photo précédente">&#8249;</button>
+      <button class="crb nx" id="crnx" aria-label="Photo suivante">&#8250;</button>
+    </div>
+    <div class="crd" id="crd"></div>
+    <p class="crn" id="crn"></p>
+  </div>
+</section>
+
+<!-- ── ATOUTS ───────────────────────────────────────────────── -->
+<section id="atouts">
+  <div class="c">
+    <div class="sh">
+      <p class="ey">Points forts</p>
+      <h2>Pourquoi cette maison ?</h2>
+      <p>Une combinaison rare de nature, de mobilité et de qualité de vie aux portes de Paris.</p>
+    </div>
+    <div class="ag">
+      <div class="ac">
+        <div class="aci">🌿</div>
+        <h3>Nature & biodiversité</h3>
+        <ul>
+          <li>Mare naturelle (tritons, têtards)</li>
+          <li>~30 espèces d'oiseaux au jardin</li>
+          <li>Vue sur la forêt depuis le jardin</li>
+          <li>Forêt de Bures à 5 min à pied (balades, châtaignes)</li>
+          <li>Viaduc des Fauvettes à 10 min (escalade, coulée verte)</li>
+        </ul>
+      </div>
+      <div class="ac">
+        <div class="aci">🚆</div>
+        <h3>Mobilité sans voiture</h3>
+        <ul>
+          <li>Gare de Bures : 10 min en bus (4+2+4)</li>
+          <li>Gare de Bures : 25 min à pied</li>
+          <li>Paris-Châtelet : 1 h porte à porte</li>
+          <li>Courtaboeuf : 20 min en bus</li>
+          <li>Massy : 35 min en bus</li>
+        </ul>
+      </div>
+      <div class="ac">
+        <div class="aci">🏫</div>
+        <h3>Scolarité complète</h3>
+        <ul>
+          <li>École des 4 Coins : 15 min à pied</li>
+          <li>Collège La Guyonnerie : bus dédié (20 min)</li>
+          <li>Université Paris-Saclay : même bus (20 min)</li>
+          <li>Lycée Blaise Pascal (Orsay) : bus (30 min)</li>
+        </ul>
+      </div>
+      <div class="ac">
+        <div class="aci">🔬</div>
+        <h3>Bassins d'emploi</h3>
+        <ul>
+          <li>Paris-Saclay / CEA : ~15 min voiture</li>
+          <li>Courtaboeuf (tech, pharma) : 20 min</li>
+          <li>Massy : 35 min bus / 15 min voiture</li>
+          <li>Paris centre : 1 h (RER B)</li>
+        </ul>
+      </div>
+      <div class="ac">
+        <div class="aci">🏡</div>
+        <h3>Qualité de vie</h3>
+        <ul>
+          <li>Quartier calme et résidentiel, placette hors axes de circulation</li>
+          <li>Vallée de Chevreuse à 10 min</li>
+          <li>Parc Nord des Ulis à 11 min à pied</li>
+          <li>Médiathèque à 17 min à pied</li>
+        </ul>
+      </div>
+      <div class="ac">
+        <div class="aci">🏠</div>
+        <h3>Le bien</h3>
+        <ul>
+          <li>Maison individuelle — quartier Montjay</li>
+          <li>Chauffage électrique (panneaux rayonnants)</li>
+          <li>Cuisine au gaz</li>
+          <li>Cave + vide sanitaire</li>
+          <li>Jardin avec mare naturelle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CARACTÉRISTIQUES ─────────────────────────────────────── -->
+<section id="caracteristiques">
+  <div class="c">
+    <div class="sh">
+      <p class="ey">Fiche technique</p>
+      <h2>Caractéristiques</h2>
+    </div>
+    <div class="spg">
+      <div>
+        <table class="spt">
+          <tr><td>Type</td><td>Maison individuelle</td></tr>
+          <tr><td>Commune</td><td>Bures-sur-Yvette (91440), quartier Montjay</td></tr>
+          <tr><td>Surface habitable</td><td>105 m²</td></tr>
+          <tr><td>Surface terrain</td><td>489 m²</td></tr>
+          <tr><td>Pièces</td><td><!-- TODO --></td></tr>
+          <tr><td>Chambres</td><td><!-- TODO --></td></tr>
+          <tr><td>Niveaux</td><td><!-- TODO --></td></tr>
+          <tr><td>Année de construction</td><td><!-- TODO --></td></tr>
+          <tr><td>Chauffage</td><td>Électrique — panneaux rayonnants</td></tr>
+          <tr><td>Eau chaude</td><td><!-- TODO --></td></tr>
+          <tr><td>Cuisine</td><td>Équipée, gaz</td></tr>
+          <tr><td>Sous-sol</td><td>Cave + vide sanitaire (3/4 de la surface)</td></tr>
+          <tr><td>Stationnement</td><td><!-- TODO --></td></tr>
+          <tr><td>Jardin</td><td>Oui — avec mare naturelle</td></tr>
+          <tr><td>DPE</td><td><!-- TODO --></td></tr>
+          <tr><td>GES</td><td><!-- TODO --></td></tr>
+          <tr><td>Taxe foncière</td><td><!-- TODO --> €/an</td></tr>
+        </table>
+        <div class="sn">
+          ⚠️ <strong>Pas de sous-sol complet :</strong> cave accessible + vide sanitaire non excavé sur les 3/4 de la surface. Toute excavation représenterait des travaux majeurs.
+        </div>
+      </div>
+      <div class="pa">
+        <div class="pc">
+          <p class="pl">Prix net vendeur</p>
+          <p class="pv">420 000 €</p>
+        </div>
+        <div class="pc">
+          <p class="pl">Prix FAI (honoraires acquéreur)</p>
+          <p class="pv">436 800 €</p>
+          <p class="ps">Dont 16 800 € TTC d'honoraires (4%)</p>
+        </div>
+        <a href="https://www.seloger.com/annonces/achat/maison/bures-sur-yvette-91/montjoy-coins/268338993.htm"
+           target="_blank" rel="noopener" class="btn bg">Annonce ERA — SeLoger ↗</a>
+        <!-- TODO: lien agence 2 -->
+        <!-- TODO: lien agence 3 -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CARTE ────────────────────────────────────────────────── -->
+<section id="carte">
+  <div class="c">
+    <div class="sh">
+      <p class="ey">Localisation</p>
+      <h2>Situation & accès</h2>
+      <p>Bures-sur-Yvette, quartier Montjay — à l'entrée de la vallée de Chevreuse.</p>
+    </div>
+    <div id="map"></div>
+    <div class="ml">
+      <span class="li"><span class="ld" style="background:#3a6b35"></span> La maison</span>
+      <span class="li"><span class="ld" style="background:#2563eb"></span> Transports</span>
+      <span class="li"><span class="ld" style="background:#d97706"></span> Écoles</span>
+      <span class="li"><span class="ld" style="background:#7c3aed"></span> Emploi</span>
+      <span class="li"><span class="ld" style="background:#16a34a"></span> Nature</span>
+      <span class="li"><span class="ld" style="background:#dc2626"></span> Commodités</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRIX ─────────────────────────────────────────────────── -->
+<section id="prix">
+  <div class="c">
+    <div class="sh">
+      <p class="ey">Tarif</p>
+      <h2>Prix de vente</h2>
+    </div>
+    <p class="pb">436 800 €</p>
+    <p class="plb">Frais d'agence inclus (FAI)</p>
+    <p class="psub">Prix net vendeur : <strong>420 000 €</strong> — Honoraires acquéreur : 16 800 € TTC (4%)</p>
+    <div class="ctas">
+      <a href="https://www.seloger.com/annonces/achat/maison/bures-sur-yvette-91/montjoy-coins/268338993.htm"
+         target="_blank" rel="noopener" class="btn bw">Annonce ERA — SeLoger ↗</a>
+      <!-- TODO: agences 2 et 3 -->
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────── -->
+<footer>
+  <div class="c">
+    <div class="fg">
+      <div>
+        <p class="fbr">maison-bures.fr</p>
+        <p class="fsu">Maison à vendre — Bures-sur-Yvette (91440), quartier Montjay<br>
+        Vallée de Chevreuse · RER B · Paris-Saclay</p>
+      </div>
+      <div class="fag">
+        <h4>Agences mandatées</h4>
+        <a href="https://www.seloger.com/annonces/achat/maison/bures-sur-yvette-91/montjoy-coins/268338993.htm"
+           target="_blank" rel="noopener" class="al">ERA — À La Clef des Champs (SeLoger) ↗</a>
+        <!-- TODO: Agence 2 -->
+        <!-- TODO: Agence 3 -->
+      </div>
+    </div>
+    <p class="fleg">Informations à titre indicatif. Se référer aux annonces des agences mandatées pour les données officielles. Photos réelles uniquement.</p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLcE=" crossorigin=""></script>
+<script>
+// =====================================================================
+//  CONFIGURATION — personnaliser ici
+// =====================================================================
+const CONFIG = {
+  // Coordonnées GPS de la maison (centrées sur la carte uMap)
+  lat:  48.693652,
+  lng:  2.166367,
+  zoom: 14,
+
+  // Caractéristiques (null = "—" dans le héro ; renseigner quand connu)
+  surface: 105,   // m² habitables
+  pieces:  7,
+
+  // ID du projet uMap — extrait de l'URL :
+  // https://umap.openstreetmap.fr/en/map/maison-bures_1407392  →  1407392
+  umapId: 1407392,
+
+  // Photos dans le dossier photos/
+  // À remplacer à terme par de vraies photos (actuellement : photos d'agence)
+  photos: [
+    'photos/09f3cbb3-6608-4914-bf20-acbc99cc2dfe.webp',
+    'photos/4326d1ab-7a64-4e41-8047-080536dc1931.webp',
+    'photos/4f9629e4-2586-4262-9f48-b413ced29af4.webp',
+    'photos/7983f3cf-d0a8-473f-8b69-394639f1f866.webp',
+    'photos/917def19-b0ef-437f-8935-2309e51fb543.webp',
+    'photos/b2558a56-a72d-486f-ae16-60d4a9c5661a.webp',
+    'photos/ff22c15c-0801-4367-a7dc-4919e439afe9.webp',
+  ]
+};
+// =====================================================================
+
+// Hero stats dynamiques
+if (CONFIG.surface) document.getElementById('ss').textContent = CONFIG.surface + ' m²';
+if (CONFIG.pieces)  document.getElementById('sp').textContent = CONFIG.pieces;
+
+// Hero background = première photo
+if (CONFIG.photos.length) {
+  document.getElementById('hero').style.backgroundImage = "url('" + CONFIG.photos[0] + "')";
+}
+
+// ── CAROUSEL ──────────────────────────────────────────────────────────
+(function () {
+  const wrap   = document.getElementById('cr');
+  const dotsEl = document.getElementById('crd');
+  const countEl= document.getElementById('crn');
+  const pvBtn  = document.getElementById('crpv');
+  const nxBtn  = document.getElementById('crnx');
+  const photos = CONFIG.photos;
+  let cur = 0, timer;
+
+  function build() {
+    wrap.innerHTML = '';
+    dotsEl.innerHTML = '';
+    if (!photos.length) {
+      wrap.innerHTML = '<div class="crs on"><div class="crph">Photos à venir — déposer les fichiers dans <code>photos/</code> et les lister dans CONFIG.photos</div></div>';
+      countEl.textContent = '';
+      return;
+    }
+    photos.forEach(function (src, i) {
+      var s = document.createElement('div');
+      s.className = 'crs' + (i === 0 ? ' on' : '');
+      var img = document.createElement('img');
+      img.src = src; img.alt = 'Photo ' + (i + 1); img.loading = i === 0 ? 'eager' : 'lazy';
+      s.appendChild(img); wrap.appendChild(s);
+      var d = document.createElement('button');
+      d.className = 'crdot' + (i === 0 ? ' on' : '');
+      d.setAttribute('aria-label', 'Photo ' + (i + 1));
+      d.addEventListener('click', function () { go(i); });
+      dotsEl.appendChild(d);
+    });
+    tick();
+  }
+
+  function go(n) {
+    var slides = wrap.querySelectorAll('.crs');
+    var dots   = dotsEl.querySelectorAll('.crdot');
+    if (!slides.length) return;
+    slides[cur].classList.remove('on'); dots[cur].classList.remove('on');
+    cur = (n + photos.length) % photos.length;
+    slides[cur].classList.add('on'); dots[cur].classList.add('on');
+    tick(); kick();
+  }
+
+  function tick() { if (photos.length) countEl.textContent = (cur + 1) + ' / ' + photos.length; }
+  function kick() { clearInterval(timer); if (photos.length > 1) timer = setInterval(function () { go(cur + 1); }, 5000); }
+
+  pvBtn.addEventListener('click', function () { go(cur - 1); });
+  nxBtn.addEventListener('click', function () { go(cur + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  go(cur - 1);
+    if (e.key === 'ArrowRight') go(cur + 1);
+  });
+
+  build(); kick();
+}());
+
+// ── NAV ───────────────────────────────────────────────────────────────
+(function () {
+  var nav    = document.getElementById('nav');
+  var update = function () { nav.classList.toggle('solid', window.scrollY > 50); };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}());
+
+// ── MAP ───────────────────────────────────────────────────────────────
+(function () {
+  var map = L.map('map', {
+    center: [CONFIG.lat, CONFIG.lng],
+    zoom: CONFIG.zoom,
+    scrollWheelZoom: false
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19
+  }).addTo(map);
+
+  // Marker principal — la maison
+  var houseIcon = L.divIcon({
+    html: '<div style="background:#3a6b35;color:white;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 10px rgba(0,0,0,.32);border:3px solid white">🏡</div>',
+    className: '', iconSize: [38, 38], iconAnchor: [19, 19]
+  });
+  L.marker([CONFIG.lat, CONFIG.lng], { icon: houseIcon })
+    .addTo(map)
+    .bindPopup('<strong>Maison à vendre</strong><br>Bures-sur-Yvette, quartier Montjay')
+    .openPopup();
+
+  // Couches POI depuis uMap ──────────────────────────────────────────
+  // Le projet uMap : https://umap.openstreetmap.fr/en/map/maison-bures_1407392
+  // Chaque couche uMap expose son GeoJSON à :
+  //   https://umap.openstreetmap.fr/fr/datalayers/{LAYER_ID}.geojson
+  // On découvre les couches via l'API uMap, puis on charge chaque GeoJSON.
+  // Catégories reconnues (propriété "category" dans uMap) :
+  //   Transports · Écoles · Emploi · Nature · Commodités
+  if (CONFIG.umapId) {
+    var COLORS = {
+      'Transports': '#2563eb',
+      'Écoles':     '#d97706',
+      'Emploi':     '#7c3aed',
+      'Nature':     '#16a34a',
+      'Commodités': '#dc2626'
+    };
+
+    function makeIcon(color, emoji) {
+      return L.divIcon({
+        html: '<div style="background:' + color + ';color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.28);border:2px solid white">' + (emoji || '📍') + '</div>',
+        className: '', iconSize: [30, 30], iconAnchor: [15, 15]
+      });
+    }
+
+    function loadGeoJSON(url) {
+      fetch(url)
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (data) {
+          L.geoJSON(data, {
+            pointToLayer: function (f, ll) {
+              var cat   = f.properties && f.properties.category;
+              var emoji = f.properties && f.properties.icon;
+              var color = COLORS[cat] || '#555';
+              return L.marker(ll, { icon: makeIcon(color, emoji) });
+            },
+            onEachFeature: function (f, layer) {
+              if (f.properties && f.properties.name) {
+                var desc = f.properties.description
+                  ? '<br><span style="font-size:.85em;color:#666">' + f.properties.description + '</span>'
+                  : '';
+                layer.bindPopup('<strong>' + f.properties.name + '</strong>' + desc);
+              }
+            }
+          }).addTo(map);
+        })
+        .catch(function (e) { console.warn('uMap layer not loaded:', url, e); });
+    }
+
+    // Récupération de la liste des couches via l'API uMap
+    fetch('https://umap.openstreetmap.fr/api/v1/map/' + CONFIG.umapId + '/')
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (meta) {
+        var layers = meta.layers || meta.datalayers || [];
+        layers.forEach(function (l) {
+          if (l.id) {
+            loadGeoJSON('https://umap.openstreetmap.fr/fr/datalayers/' + l.id + '.geojson');
+          }
+        });
+      })
+      .catch(function (e) {
+        console.warn('uMap API unreachable — POI layers not loaded. (' + e + ')');
+      });
+  }
+}());
+</script>
+</body>
+</html>
