@@ -480,15 +480,18 @@ const CONFIG = {
   // Coordonnées GPS de la maison (centrées sur la carte uMap)
   lat:  48.693652,
   lng:  2.166367,
-  zoom: 14,
+  zoom: 13,
 
   // Caractéristiques (null = "—" dans le héro ; renseigner quand connu)
   surface: 105,   // m² habitables
   pieces:  7,
 
-  // ID du projet uMap — extrait de l'URL :
-  // https://umap.openstreetmap.fr/en/map/maison-bures_1407392  →  1407392
-  umapId: 1407392,
+  // Fichier GeoJSON local des POI (téléchargé depuis uMap).
+  // Re-télécharger après ajout de POI dans uMap :
+  //   https://umap.openstreetmap.fr/en/map/maison-bures_1407392
+  // La feature osm_id=90740392 positionne le marker de la maison.
+  // Propriétés uMap optionnelles sur chaque feature : category, icon, description
+  geojsonFile: 'maison_bures.geojson',
 
   // Photos dans le dossier photos/
   // À remplacer à terme par de vraies photos (actuellement : photos d'agence)
@@ -582,85 +585,92 @@ if (CONFIG.photos.length) {
   var map = L.map('map', {
     center: [CONFIG.lat, CONFIG.lng],
     zoom: CONFIG.zoom,
-    scrollWheelZoom: false
+    scrollWheelZoom: false   // activé via Cmd/Ctrl+scroll ci-dessous
   });
+
+  // Cmd+scroll (macOS) ou Ctrl+scroll (Windows/Linux) pour zoomer
+  document.getElementById('map').addEventListener('wheel', function (e) {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      if (e.deltaY < 0) map.zoomIn(); else map.zoomOut();
+    }
+  }, { passive: false });
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxZoom: 19
   }).addTo(map);
 
-  // Marker principal — la maison
+  // Marker principal — position initiale = CONFIG.lat/lng,
+  // sera repositionné sur les coordonnées exactes du GeoJSON.
   var houseIcon = L.divIcon({
-    html: '<div style="background:#3a6b35;color:white;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 10px rgba(0,0,0,.32);border:3px solid white">🏡</div>',
-    className: '', iconSize: [38, 38], iconAnchor: [19, 19]
+    html: '<div style="background:#3a6b35;color:white;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 3px 12px rgba(0,0,0,.35);border:3px solid white">🏡</div>',
+    className: '', iconSize: [52, 52], iconAnchor: [26, 26]
   });
-  L.marker([CONFIG.lat, CONFIG.lng], { icon: houseIcon })
+  var houseMarker = L.marker([CONFIG.lat, CONFIG.lng], { icon: houseIcon })
     .addTo(map)
     .bindPopup('<strong>Maison à vendre</strong><br>Bures-sur-Yvette, quartier Montjay')
     .openPopup();
 
-  // Couches POI depuis uMap ──────────────────────────────────────────
-  // Le projet uMap : https://umap.openstreetmap.fr/en/map/maison-bures_1407392
-  // Chaque couche uMap expose son GeoJSON à :
-  //   https://umap.openstreetmap.fr/fr/datalayers/{LAYER_ID}.geojson
-  // On découvre les couches via l'API uMap, puis on charge chaque GeoJSON.
-  // Catégories reconnues (propriété "category" dans uMap) :
-  //   Transports · Écoles · Emploi · Nature · Commodités
-  if (CONFIG.umapId) {
-    var COLORS = {
-      'Transports': '#2563eb',
-      'Écoles':     '#d97706',
-      'Emploi':     '#7c3aed',
-      'Nature':     '#16a34a',
-      'Commodités': '#dc2626'
+  // POI depuis GeoJSON local ────────────────────────────────────────
+  // Icônes dérivées de osm_key/osm_value ; les propriétés uMap
+  // « category » et « icon » (emoji) ont priorité si présentes.
+  if (CONFIG.geojsonFile) {
+    var OSM_ICON = {
+      'railway:stop':         { color: '#2563eb', emoji: '🚆' },
+      'highway:bus_stop':     { color: '#2563eb', emoji: '🚌' },
+      'amenity:school':       { color: '#d97706', emoji: '🏫' },
+      'building:school':      { color: '#d97706', emoji: '🏫' },
+      'amenity:university':   { color: '#7c3aed', emoji: '🎓' },
+      'building:university':  { color: '#7c3aed', emoji: '🎓' },
+      'amenity:library':      { color: '#dc2626', emoji: '📚' },
+      'highway:track':        { color: '#16a34a', emoji: '🌿' },
+      'man_made:bridge':      { color: '#16a34a', emoji: '🧗' },
+      'shop:mall':            { color: '#dc2626', emoji: '🛒' },
+      'amenity:marketplace':  { color: '#dc2626', emoji: '🛒' },
+      'shop:marketplace':     { color: '#dc2626', emoji: '🛒' },
+    };
+    var CAT_COLORS = {
+      'Transports': '#2563eb', 'Écoles': '#d97706',
+      'Emploi': '#7c3aed', 'Nature': '#16a34a', 'Commodités': '#dc2626'
     };
 
-    function makeIcon(color, emoji) {
-      return L.divIcon({
-        html: '<div style="background:' + color + ';color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.28);border:2px solid white">' + (emoji || '📍') + '</div>',
-        className: '', iconSize: [30, 30], iconAnchor: [15, 15]
-      });
-    }
-
-    function loadGeoJSON(url) {
-      fetch(url)
-        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function (data) {
-          L.geoJSON(data, {
-            pointToLayer: function (f, ll) {
-              var cat   = f.properties && f.properties.category;
-              var emoji = f.properties && f.properties.icon;
-              var color = COLORS[cat] || '#555';
-              return L.marker(ll, { icon: makeIcon(color, emoji) });
-            },
-            onEachFeature: function (f, layer) {
-              if (f.properties && f.properties.name) {
-                var desc = f.properties.description
-                  ? '<br><span style="font-size:.85em;color:#666">' + f.properties.description + '</span>'
-                  : '';
-                layer.bindPopup('<strong>' + f.properties.name + '</strong>' + desc);
-              }
-            }
-          }).addTo(map);
-        })
-        .catch(function (e) { console.warn('uMap layer not loaded:', url, e); });
-    }
-
-    // Récupération de la liste des couches via l'API uMap
-    fetch('https://umap.openstreetmap.fr/api/v1/map/' + CONFIG.umapId + '/')
+    fetch(CONFIG.geojsonFile)
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (meta) {
-        var layers = meta.layers || meta.datalayers || [];
-        layers.forEach(function (l) {
-          if (l.id) {
-            loadGeoJSON('https://umap.openstreetmap.fr/fr/datalayers/' + l.id + '.geojson');
+      .then(function (data) {
+        data.features.forEach(function (f) {
+          var p      = f.properties || {};
+          var coords = f.geometry && f.geometry.coordinates;
+          if (!coords) return;
+          var ll = [coords[1], coords[0]];
+
+          // La maison — repositionner le marker sur ses coordonnées exactes
+          if (p.osm_id === 90740392) {
+            houseMarker.setLatLng(ll);
+            map.setView(ll, CONFIG.zoom);
+            return;
           }
+
+          // Tous les autres POI
+          if (!p.name) return;
+          var osmKey = (p.osm_key || '') + ':' + (p.osm_value || '');
+          var style  = OSM_ICON[osmKey] || { color: '#555', emoji: '📍' };
+          // Priorité aux métadonnées uMap si présentes
+          if (p.category && CAT_COLORS[p.category]) style = { color: CAT_COLORS[p.category], emoji: style.emoji };
+          if (p.icon) style.emoji = p.icon;
+
+          var poiIcon = L.divIcon({
+            html: '<div style="background:' + style.color + ';color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.28);border:2px solid white">' + style.emoji + '</div>',
+            className: '', iconSize: [30, 30], iconAnchor: [15, 15]
+          });
+          var popup = '<strong>' + p.name + '</strong>';
+          if (p.description) popup += '<br><span style="font-size:.85em;color:#666">' + p.description + '</span>';
+          var outlink = p._umap_options && p._umap_options.outlink;
+          if (outlink) popup += '<br><a href="' + outlink + '" target="_blank" rel="noopener" style="font-size:.85em">En savoir plus →</a>';
+          L.marker(ll, { icon: poiIcon }).addTo(map).bindPopup(popup);
         });
       })
-      .catch(function (e) {
-        console.warn('uMap API unreachable — POI layers not loaded. (' + e + ')');
-      });
+      .catch(function (e) { console.warn('GeoJSON non chargé :', e); });
   }
 }());
 </script>

@@ -1,0 +1,525 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1579006,
+          48.6839875
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 90740392,
+        "osm_key": "building",
+        "osm_value": "yes",
+        "type": "house",
+        "housenumber": "6",
+        "street": "Les Vergers de Montjay",
+        "locality": "Montjay",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR",
+        "extent": [
+          2.157806,
+          48.684052,
+          2.157995,
+          48.683923
+        ]
+      },
+      "id": "kMy8h"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1574408,
+          48.7004578
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 220254689,
+        "osm_key": "amenity",
+        "osm_value": "school",
+        "type": "house",
+        "housenumber": "51",
+        "name": "Collège La Guyonnerie",
+        "street": "Rue du Docteur Collé",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR",
+        "extent": [
+          2.1567573,
+          48.7013219,
+          2.1582367,
+          48.7000712
+        ]
+      },
+      "id": "6Ruc4"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1630313,
+          48.6819493
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 77034948,
+        "osm_key": "building",
+        "osm_value": "school",
+        "type": "house",
+        "name": "Collège Aimé Césaire",
+        "street": "Rue de l'Aunis",
+        "locality": "Les Amonts",
+        "district": "Anjou",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1623502,
+          48.6825226,
+          2.1635488,
+          48.6812971
+        ]
+      },
+      "id": "BuUB9"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.164585,
+          48.6759105
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 164926493,
+        "osm_key": "amenity",
+        "osm_value": "school",
+        "type": "house",
+        "name": "Lycée de l'Essouriau",
+        "street": "Rue de l'Adour",
+        "district": "Béarn",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1615496,
+          48.6766627,
+          2.1671176,
+          48.6750015
+        ]
+      },
+      "id": "HRTLs"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1632856,
+          48.6957636
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 5836393507,
+        "osm_key": "railway",
+        "osm_value": "stop",
+        "type": "house",
+        "name": "Bures-sur-Yvette - RER B",
+        "street": "Boulevard Georges Seneuze",
+        "locality": "Bures Cottage",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR"
+      },
+      "id": "uwld9"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1605587,
+          48.6778684
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 90741034,
+        "osm_key": "amenity",
+        "osm_value": "school",
+        "type": "house",
+        "name": "École des Quatre Coins",
+        "street": "Rue Camille Saint-Saëns",
+        "locality": "Les Hauts de Bures",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR",
+        "extent": [
+          2.1597114,
+          48.6785226,
+          2.1614516,
+          48.6772206
+        ]
+      },
+      "id": "MCvHN"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1706986,
+          48.6812001
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 77574405,
+        "osm_key": "amenity",
+        "osm_value": "library",
+        "type": "house",
+        "name": "Médiathèque François Mitterrand",
+        "street": "Esplanade de la République",
+        "district": "Périgord",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1704905,
+          48.681404,
+          2.1708865,
+          48.6809961
+        ],
+        "_umap_options": {
+          "outlink": "https://www.lesulis.fr/105/sortir/mediatheque.htm"
+        }
+      },
+      "id": "00Elx"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1591996,
+          48.6836793
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 1043982084,
+        "osm_key": "highway",
+        "osm_value": "bus_stop",
+        "type": "house",
+        "name": "Montjay - Bus pour Guyonnerie et Université",
+        "street": "Rue de Mondétour",
+        "locality": "Montjay",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR"
+      },
+      "id": "tfO4C"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1601321,
+          48.6856599
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 5218818015,
+        "osm_key": "highway",
+        "osm_value": "bus_stop",
+        "type": "house",
+        "name": "Beaumontel - Bus pour RER",
+        "street": "Avenue Les Ulis",
+        "locality": "Montjay",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR"
+      },
+      "id": "DfFpf"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1708234,
+          48.7004017
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 23790201,
+        "osm_key": "amenity",
+        "osm_value": "university",
+        "type": "house",
+        "name": "Université Paris-Saclay - Campus Vallée",
+        "street": "Rue Charles de Gaulle",
+        "locality": "Bures Cottage",
+        "district": "Montjay",
+        "city": "Orsay",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR",
+        "extent": [
+          2.1576212,
+          48.7042586,
+          2.1837013,
+          48.6965341
+        ]
+      },
+      "id": "1nnMm"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1728617,
+          48.7102947
+        ]
+      },
+      "properties": {
+        "osm_type": "R",
+        "osm_id": 562947,
+        "osm_key": "building",
+        "osm_value": "university",
+        "type": "house",
+        "housenumber": "640",
+        "name": "Université Paris-Saclay",
+        "street": "6 rue Sophie Germain",
+        "locality": "Belvedère",
+        "district": "Corbeville",
+        "city": "Orsay",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91400",
+        "countrycode": "FR",
+        "extent": [
+          2.172741,
+          48.7109602,
+          2.173812,
+          48.7095827
+        ]
+      },
+      "id": "Fg2VH"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1879471,
+          48.69522
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 65655071,
+        "osm_key": "building",
+        "osm_value": "school",
+        "type": "house",
+        "name": "Lycée Blaise Pascal - Prépas scientifiques",
+        "street": "Rue Alexander Fleming",
+        "locality": "Orsay Centre",
+        "district": "La Bouvêche",
+        "city": "Orsay",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91400",
+        "countrycode": "FR",
+        "extent": [
+          2.1877321,
+          48.6958996,
+          2.1881942,
+          48.6944709
+        ]
+      },
+      "id": "Ktr7y"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1719322,
+          48.6767911
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 77023424,
+        "osm_key": "shop",
+        "osm_value": "mall",
+        "type": "house",
+        "name": "Centre Commercial Régional Les Ulis 2",
+        "street": "Allée 28-29",
+        "district": "Villeziers",
+        "city": "Saint-Jean-de-Beauregard",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1689071,
+          48.6778947,
+          2.1745235,
+          48.6757048
+        ]
+      },
+      "id": "nOhrI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1701132,
+          48.6830407
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 1241512106,
+        "osm_key": "amenity",
+        "osm_value": "marketplace",
+        "type": "house",
+        "name": "Marché des Ulis",
+        "street": "Place de la Liberté",
+        "district": "Bourgogne",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR"
+      },
+      "id": "7VCfH"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1526019,
+          48.6789005
+        ]
+      },
+      "properties": {
+        "osm_type": "R",
+        "osm_id": 12235875,
+        "osm_key": "man_made",
+        "osm_value": "bridge",
+        "type": "house",
+        "name": "Viaduc des Fauvettes - Voies d'escalade",
+        "street": "Viaduc des Fauvettes",
+        "district": "Clos de Grivery",
+        "city": "Gometz-le-Châtel",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1517694,
+          48.6797994,
+          2.1532149,
+          48.6780261
+        ],
+        "_umap_options": {
+          "outlink": "https://www.camptocamp.org/waypoints/102840/fr/viaduc-des-fauvettes"
+        }
+      },
+      "id": "QWFxi"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1670349,
+          48.6897276
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 147125921,
+        "osm_key": "leisure",
+        "osm_value": "park",
+        "type": "other",
+        "name": "Parc Nord",
+        "district": "Champagne",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1614058,
+          48.6929848,
+          2.1740966,
+          48.6868145
+        ]
+      },
+      "id": "GsVVA"
+    }
+  ]
+}
