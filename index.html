@@ -109,6 +109,7 @@
     .crs { position: absolute; inset: 0; opacity: 0; transition: opacity .55s; }
     .crs.on { opacity: 1; }
     .crs img { width: 100%; height: 100%; object-fit: cover; }
+    .crcp { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 18px; background: linear-gradient(transparent, rgba(0,0,0,.55)); color: white; font-size: .82rem; pointer-events: none; }
     .crph {
       width: 100%; height: 100%;
       background: linear-gradient(135deg, #2a5028, #1a301a);
@@ -394,11 +395,13 @@
           <tr><td>Jardin</td><td>Oui — avec bassin de jardin</td></tr>
           <tr><td>DPE</td><td>E</td></tr>
           <tr><td>GES</td><td>C</td></tr>
-          <tr><td>Taxe foncière</td><td><!-- TODO --> €/an</td></tr>
+          <!--<tr><td>Taxe foncière</td><td><!-- TODO --> €/an</td></tr>-->
         </table>
+        <!--
         <div class="sn">
           ⚠️ <strong>Pas de sous-sol complet :</strong> cave accessible + vide sanitaire non excavé sur les 3/4 de la surface. Toute excavation représenterait des travaux majeurs.
         </div>
+      -->
       </div>
       <div class="pa">
         <div class="pc">
@@ -503,10 +506,10 @@ const CONFIG = {
   // Propriétés uMap optionnelles sur chaque feature : category, icon, description
   geojsonFile: 'maison_bures.geojson',
 
-  // Photos dans le dossier photos/
-  // À remplacer à terme par de vraies photos (actuellement : photos d'agence)
+  // Photos : chaîne simple ou { src, title } pour afficher une légende
   photos: [
-    'photos/jardin1.jpg',
+    { src: 'photos/jardin1.jpg',    title: 'Le jardin' },
+    { src: 'photos/parc_nord1.jpg', title: 'Parc Nord des Ulis' },
     'photos/09f3cbb3-6608-4914-bf20-acbc99cc2dfe.webp',
     'photos/4326d1ab-7a64-4e41-8047-080536dc1931.webp',
     'photos/4f9629e4-2586-4262-9f48-b413ced29af4.webp',
@@ -524,7 +527,8 @@ if (CONFIG.pieces)  document.getElementById('sp').textContent = CONFIG.pieces;
 
 // Hero background = première photo
 if (CONFIG.photos.length) {
-  document.getElementById('hero').style.backgroundImage = "url('" + CONFIG.photos[0] + "')";
+  var firstSrc = typeof CONFIG.photos[0] === 'string' ? CONFIG.photos[0] : CONFIG.photos[0].src;
+  document.getElementById('hero').style.backgroundImage = "url('" + firstSrc + "')";
 }
 
 // ── CAROUSEL ──────────────────────────────────────────────────────────
@@ -545,12 +549,16 @@ if (CONFIG.photos.length) {
       countEl.textContent = '';
       return;
     }
-    photos.forEach(function (src, i) {
+    photos.forEach(function (entry, i) {
+      var src   = typeof entry === 'string' ? entry : entry.src;
+      var title = typeof entry === 'string' ? null  : (entry.title || null);
       var s = document.createElement('div');
       s.className = 'crs' + (i === 0 ? ' on' : '');
       var img = document.createElement('img');
-      img.src = src; img.alt = 'Photo ' + (i + 1); img.loading = i === 0 ? 'eager' : 'lazy';
-      s.appendChild(img); wrap.appendChild(s);
+      img.src = src; img.alt = title || ('Photo ' + (i + 1)); img.loading = i === 0 ? 'eager' : 'lazy';
+      s.appendChild(img);
+      if (title) { var cap = document.createElement('div'); cap.className = 'crcp'; cap.textContent = title; s.appendChild(cap); }
+      wrap.appendChild(s);
       var d = document.createElement('button');
       d.className = 'crdot' + (i === 0 ? ' on' : '');
       d.setAttribute('aria-label', 'Photo ' + (i + 1));
