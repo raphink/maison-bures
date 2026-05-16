@@ -520,6 +520,68 @@
         ]
       },
       "id": "GsVVA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1937891,
+          48.6696815
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 404923974,
+        "osm_key": "highway",
+        "osm_value": "motorway",
+        "type": "street",
+        "name": "Accès autoroute A10 (Bordeaux)",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1936574,
+          48.669828,
+          2.1939208,
+          48.6695349
+        ]
+      },
+      "id": "18Nnk"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4046531,
+          48.6333577
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 1332849920,
+        "osm_key": "highway",
+        "osm_value": "motorway",
+        "type": "street",
+        "name": "Accès autoroute A6 (Lyon)",
+        "city": "Ris-Orangis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91130",
+        "countrycode": "FR",
+        "extent": [
+          2.4039435,
+          48.6338062,
+          2.4053627,
+          48.6329092
+        ]
+      },
+      "id": "dFyRn"
     }
   ]
 }
