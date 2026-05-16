@@ -159,9 +159,17 @@
 
     /* ── CARTE ──────────────────────────────────────────────── */
     #carte { padding: var(--sp) 0; background: var(--bg); }
-    #map   { height: 460px; border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; }
+    #map   { position: relative; height: 460px; border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; }
+    #mapzoomhint {
+      position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,.62); color: white; padding: 6px 16px;
+      border-radius: 20px; font-size: .8rem; white-space: nowrap;
+      pointer-events: none; opacity: 0; transition: opacity .3s; z-index: 1000;
+    }
+    #mapzoomhint.show { opacity: 1; }
     .ml    { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: .79rem; color: var(--muted); }
-    .li    { display: flex; align-items: center; gap: 6px; }
+    .li    { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; transition: opacity .2s; }
+    .li.off { opacity: .35; }
     .ld    { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 
     /* ── PRIX ───────────────────────────────────────────────── */
@@ -419,12 +427,12 @@
     </div>
     <div id="map"></div>
     <div class="ml">
-      <span class="li"><span class="ld" style="background:#3a6b35"></span> La maison</span>
-      <span class="li"><span class="ld" style="background:#2563eb"></span> Transports</span>
-      <span class="li"><span class="ld" style="background:#d97706"></span> Écoles</span>
-      <span class="li"><span class="ld" style="background:#7c3aed"></span> Emploi</span>
-      <span class="li"><span class="ld" style="background:#16a34a"></span> Nature</span>
-      <span class="li"><span class="ld" style="background:#dc2626"></span> Commodités</span>
+      <span class="li" data-cat="maison"><span class="ld" style="background:#3a6b35"></span> La maison</span>
+      <span class="li" data-cat="Transports"><span class="ld" style="background:#2563eb"></span> Transports</span>
+      <span class="li" data-cat="Écoles"><span class="ld" style="background:#d97706"></span> Écoles</span>
+      <span class="li" data-cat="Emploi"><span class="ld" style="background:#7c3aed"></span> Emploi</span>
+      <span class="li" data-cat="Nature"><span class="ld" style="background:#16a34a"></span> Nature</span>
+      <span class="li" data-cat="Commodités"><span class="ld" style="background:#dc2626"></span> Commodités</span>
     </div>
   </div>
 </section>
@@ -589,10 +597,22 @@ if (CONFIG.photos.length) {
   });
 
   // Cmd+scroll (macOS) ou Ctrl+scroll (Windows/Linux) pour zoomer
+  var isMac = /Mac/.test(navigator.platform || navigator.userAgent);
+  var modKey = isMac ? '⌘' : 'Ctrl';
+  var zoomHint = document.createElement('div');
+  zoomHint.id = 'mapzoomhint';
+  zoomHint.textContent = modKey + '+scroll pour zoomer';
+  document.getElementById('map').appendChild(zoomHint);
+  var hintTimer;
+
   document.getElementById('map').addEventListener('wheel', function (e) {
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault();
       if (e.deltaY < 0) map.zoomIn(); else map.zoomOut();
+    } else {
+      zoomHint.classList.add('show');
+      clearTimeout(hintTimer);
+      hintTimer = setTimeout(function () { zoomHint.classList.remove('show'); }, 1500);
     }
   }, { passive: false });
 
@@ -604,8 +624,8 @@ if (CONFIG.photos.length) {
   // Marker principal — position initiale = CONFIG.lat/lng,
   // sera repositionné sur les coordonnées exactes du GeoJSON.
   var houseIcon = L.divIcon({
-    html: '<div style="background:#3a6b35;color:white;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 3px 12px rgba(0,0,0,.35);border:3px solid white">🏡</div>',
-    className: '', iconSize: [52, 52], iconAnchor: [26, 26]
+    html: '<div style="background:#3a6b35;color:white;border-radius:50%;width:68px;height:68px;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 14px rgba(0,0,0,.38);border:4px solid white">🏡</div>',
+    className: '', iconSize: [68, 68], iconAnchor: [34, 34]
   });
   var houseMarker = L.marker([CONFIG.lat, CONFIG.lng], { icon: houseIcon })
     .addTo(map)
@@ -617,23 +637,25 @@ if (CONFIG.photos.length) {
   // « category » et « icon » (emoji) ont priorité si présentes.
   if (CONFIG.geojsonFile) {
     var OSM_ICON = {
-      'railway:stop':         { color: '#2563eb', emoji: '🚆' },
-      'highway:bus_stop':     { color: '#2563eb', emoji: '🚌' },
-      'amenity:school':       { color: '#d97706', emoji: '🏫' },
-      'building:school':      { color: '#d97706', emoji: '🏫' },
-      'amenity:university':   { color: '#7c3aed', emoji: '🎓' },
-      'building:university':  { color: '#7c3aed', emoji: '🎓' },
-      'amenity:library':      { color: '#dc2626', emoji: '📚' },
-      'highway:track':        { color: '#16a34a', emoji: '🌿' },
-      'man_made:bridge':      { color: '#16a34a', emoji: '🧗' },
-      'shop:mall':            { color: '#dc2626', emoji: '🛒' },
-      'amenity:marketplace':  { color: '#dc2626', emoji: '🛒' },
-      'shop:marketplace':     { color: '#dc2626', emoji: '🛒' },
+      'railway:stop':         { color: '#2563eb', emoji: '🚆', cat: 'Transports' },
+      'highway:bus_stop':     { color: '#2563eb', emoji: '🚌', cat: 'Transports' },
+      'amenity:school':       { color: '#d97706', emoji: '🏫', cat: 'Écoles' },
+      'building:school':      { color: '#d97706', emoji: '🏫', cat: 'Écoles' },
+      'amenity:university':   { color: '#7c3aed', emoji: '🎓', cat: 'Emploi' },
+      'building:university':  { color: '#7c3aed', emoji: '🎓', cat: 'Emploi' },
+      'amenity:library':      { color: '#dc2626', emoji: '📚', cat: 'Commodités' },
+      'highway:track':        { color: '#16a34a', emoji: '🌿', cat: 'Nature' },
+      'man_made:bridge':      { color: '#16a34a', emoji: '🧗', cat: 'Nature' },
+      'leisure:park':         { color: '#16a34a', emoji: '🌳', cat: 'Nature' },
+      'shop:mall':            { color: '#dc2626', emoji: '🛒', cat: 'Commodités' },
+      'amenity:marketplace':  { color: '#dc2626', emoji: '🛒', cat: 'Commodités' },
+      'shop:marketplace':     { color: '#dc2626', emoji: '🛒', cat: 'Commodités' },
     };
     var CAT_COLORS = {
       'Transports': '#2563eb', 'Écoles': '#d97706',
       'Emploi': '#7c3aed', 'Nature': '#16a34a', 'Commodités': '#dc2626'
     };
+    var markersByCat = { 'maison': [houseMarker] };
 
     fetch(CONFIG.geojsonFile)
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
@@ -654,9 +676,9 @@ if (CONFIG.photos.length) {
           // Tous les autres POI
           if (!p.name) return;
           var osmKey = (p.osm_key || '') + ':' + (p.osm_value || '');
-          var style  = OSM_ICON[osmKey] || { color: '#555', emoji: '📍' };
+          var style  = Object.assign({}, OSM_ICON[osmKey] || { color: '#555', emoji: '📍', cat: 'Commodités' });
           // Priorité aux métadonnées uMap si présentes
-          if (p.category && CAT_COLORS[p.category]) style = { color: CAT_COLORS[p.category], emoji: style.emoji };
+          if (p.category && CAT_COLORS[p.category]) { style.color = CAT_COLORS[p.category]; style.cat = p.category; }
           if (p.icon) style.emoji = p.icon;
 
           var poiIcon = L.divIcon({
@@ -667,7 +689,21 @@ if (CONFIG.photos.length) {
           if (p.description) popup += '<br><span style="font-size:.85em;color:#666">' + p.description + '</span>';
           var outlink = p._umap_options && p._umap_options.outlink;
           if (outlink) popup += '<br><a href="' + outlink + '" target="_blank" rel="noopener" style="font-size:.85em">En savoir plus →</a>';
-          L.marker(ll, { icon: poiIcon }).addTo(map).bindPopup(popup);
+          var marker = L.marker(ll, { icon: poiIcon }).addTo(map).bindPopup(popup);
+          var cat = style.cat || 'Commodités';
+          if (!markersByCat[cat]) markersByCat[cat] = [];
+          markersByCat[cat].push(marker);
+        });
+
+        // Légende cliquable — filtrer par catégorie
+        document.querySelectorAll('.ml .li[data-cat]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            var cat     = el.dataset.cat;
+            var markers = markersByCat[cat] || [];
+            var hide    = !el.classList.contains('off');
+            el.classList.toggle('off', hide);
+            markers.forEach(function (m) { hide ? map.removeLayer(m) : map.addLayer(m); });
+          });
         });
       })
       .catch(function (e) { console.warn('GeoJSON non chargé :', e); });
