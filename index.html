@@ -624,10 +624,10 @@ if (CONFIG.photos.length) {
   // Marker principal — position initiale = CONFIG.lat/lng,
   // sera repositionné sur les coordonnées exactes du GeoJSON.
   var houseIcon = L.divIcon({
-    html: '<div style="background:#3a6b35;color:white;border-radius:50%;width:68px;height:68px;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 14px rgba(0,0,0,.38);border:4px solid white">🏡</div>',
-    className: '', iconSize: [68, 68], iconAnchor: [34, 34]
+    html: '<div style="background:#3a6b35;color:white;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 3px 12px rgba(0,0,0,.35);border:3px solid white">🏡</div>',
+    className: '', iconSize: [52, 52], iconAnchor: [26, 26]
   });
-  var houseMarker = L.marker([CONFIG.lat, CONFIG.lng], { icon: houseIcon })
+  var houseMarker = L.marker([CONFIG.lat, CONFIG.lng], { icon: houseIcon, zIndexOffset: 1000 })
     .addTo(map)
     .bindPopup('<strong>Maison à vendre</strong><br>Bures-sur-Yvette, quartier Montjay')
     .openPopup();
