@@ -437,12 +437,12 @@
       <div class="pa">
         <div class="pc">
           <p class="pl">Prix net vendeur</p>
-          <p class="pv">420 000 €</p>
+          <p class="pv js-prix-net"></p>
         </div>
         <div class="pc">
           <p class="pl">Prix FAI (honoraires acquéreur)</p>
-          <p class="pv">436 800 €</p>
-          <p class="ps">Dont 16 800 € TTC d'honoraires (4%)</p>
+          <p class="pv js-prix-fai"></p>
+          <p class="ps">Dont <span class="js-prix-hon"></span> TTC d'honoraires (<span class="js-prix-pct"></span>)</p>
         </div>
         <a href="https://www.eraimmobilier.com/agence-immobiliere-gif-sur-yvette-444/annonces/500911"
            target="_blank" rel="noopener" class="btn bg"><img src="https://www.google.com/s2/favicons?domain=eraimmobilier.com&sz=32" alt="">ERA ↗</a>
@@ -483,9 +483,9 @@
       <p class="ey">Tarif</p>
       <h2>Prix de vente</h2>
     </div>
-    <p class="pb">436 800 €</p>
+    <p class="pb js-prix-fai"></p>
     <p class="plb">Frais d'agence inclus (FAI)</p>
-    <p class="psub">Prix net vendeur : <strong>420 000 €</strong> — Honoraires acquéreur : 16 800 € TTC (4%)</p>
+    <p class="psub">Prix net vendeur : <strong class="js-prix-net"></strong> — Honoraires acquéreur : <span class="js-prix-hon"></span> TTC (<span class="js-prix-pct"></span>)</p>
     <p class="psub">Propriétaires ouverts à la négociation.</p>
     <div class="ctas">
       <a href="https://www.eraimmobilier.com/agence-immobiliere-gif-sur-yvette-444/annonces/500911"
@@ -536,6 +536,10 @@ const CONFIG = {
   surface: 105,   // m² habitables
   pieces:  6,
 
+  // Prix
+  prixNet: 420000,       // prix net vendeur (€)
+  honorairesPct: 4,      // honoraires acquéreur (%)
+
   // Fichier GeoJSON local des POI (téléchargé depuis uMap).
   // Re-télécharger après ajout de POI dans uMap :
   //   https://umap.openstreetmap.fr/en/map/maison-bures_1407392
@@ -566,6 +570,20 @@ const CONFIG = {
 // Hero stats dynamiques
 if (CONFIG.surface) document.getElementById('ss').textContent = CONFIG.surface + ' m²';
 if (CONFIG.pieces)  document.getElementById('sp').textContent = CONFIG.pieces;
+
+// Prix dynamiques
+(function(){
+  var net = CONFIG.prixNet;
+  var pct = CONFIG.honorairesPct;
+  if (!net) return;
+  var hon = Math.round(net * pct / 100);
+  var fai = net + hon;
+  var fmt = function(n){ return n.toLocaleString('fr-FR') + ' €'; };
+  document.querySelectorAll('.js-prix-fai').forEach(function(el){ el.textContent = fmt(fai); });
+  document.querySelectorAll('.js-prix-net').forEach(function(el){ el.textContent = fmt(net); });
+  document.querySelectorAll('.js-prix-hon').forEach(function(el){ el.textContent = fmt(hon); });
+  document.querySelectorAll('.js-prix-pct').forEach(function(el){ el.textContent = pct + '%'; });
+})();
 
 // Hero background = première photo
 if (CONFIG.photos.length) {
