@@ -582,6 +582,100 @@
         ]
       },
       "id": "dFyRn"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1644388,
+          48.6979395
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 90740997,
+        "osm_key": "amenity",
+        "osm_value": "theatre",
+        "type": "house",
+        "housenumber": "1",
+        "name": "Centre culturel Marcel Pagnol - Ludothèque",
+        "street": "Rue Descartes",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR",
+        "extent": [
+          2.164175,
+          48.698155,
+          2.164663,
+          48.697726
+        ]
+      },
+      "id": "lqtR2"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1705695,
+          48.6826214
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 10299245709,
+        "osm_key": "amenity",
+        "osm_value": "theatre",
+        "type": "house",
+        "name": "Radazik - Salle de concerts",
+        "street": "Place de la Liberté",
+        "district": "Bourgogne",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR"
+      },
+      "id": "hMW0d"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1698638,
+          48.682155
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 77574300,
+        "osm_key": "amenity",
+        "osm_value": "theatre",
+        "type": "house",
+        "name": "Centre culturel Boris Vian",
+        "street": "Esplanade de la République",
+        "district": "Périgord",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1696047,
+          48.6823773,
+          2.170095,
+          48.6819317
+        ]
+      },
+      "id": "aXsCa"
     }
   ]
 }
