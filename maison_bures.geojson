@@ -260,7 +260,7 @@
         "postcode": "91440",
         "countrycode": "FR",
         "_umap_options": {
-          "outlink": "https://www.bonjour-ratp.fr/lignes-bus/rd-saclay-ligne-4654-c02817/"
+          "outlink": "https://www.bonjour-ratp.fr/arrets-bus/montjay+bures-sur-yvette-91440/"
         }
       },
       "id": "tfO4C"
@@ -291,7 +291,7 @@
         "postcode": "91440",
         "countrycode": "FR",
         "_umap_options": {
-          "outlink": "https://www.bonjour-ratp.fr/lignes-bus/rd-saclay-ligne-4654-c02817/"
+          "outlink": "https://www.bonjour-ratp.fr/arrets-bus/beaumontel+bures-sur-yvette-91440/"
         }
       },
       "id": "DfFpf"
@@ -685,6 +685,35 @@
         ]
       },
       "id": "aXsCa"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1667869,
+          48.6827832
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 1611009440,
+        "osm_key": "highway",
+        "osm_value": "bus_stop",
+        "type": "house",
+        "name": "Hautes Plaines - Bus pour Orsay, Courtaboeuf, Massy",
+        "street": "Avenue du Berry",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "_umap_options": {
+          "outlink": "https://www.bonjour-ratp.fr/arrets-bus/hautes-plaines+les-ulis-91940/"
+        }
+      },
+      "id": "dH5vM"
     }
   ]
 }
