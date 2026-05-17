@@ -65,7 +65,10 @@
           48.7013219,
           2.1582367,
           48.7000712
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://clg-laguyonnerie-bures.ac-versailles.fr/"
+        }
       },
       "id": "6Ruc4"
     },
@@ -99,7 +102,10 @@
           48.6825226,
           2.1635488,
           48.6812971
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://clg-aimecesaire-ulis.fr/"
+        }
       },
       "id": "BuUB9"
     },
@@ -132,7 +138,10 @@
           48.6766627,
           2.1671176,
           48.6750015
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://lyceedelessouriau.fr/"
+        }
       },
       "id": "HRTLs"
     },
@@ -194,7 +203,10 @@
           48.6785226,
           2.1614516,
           48.6772206
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://4coins.toutemonecole.fr/informations"
+        }
       },
       "id": "MCvHN"
     },
@@ -326,7 +338,10 @@
           48.7042586,
           2.1837013,
           48.6965341
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://ecole-universitaire-paris-saclay.fr/les-campus"
+        }
       },
       "id": "1nnMm"
     },
@@ -395,7 +410,10 @@
           48.6958996,
           2.1881942,
           48.6944709
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://lyc-pascal-orsay.ac-versailles.fr/"
+        }
       },
       "id": "Ktr7y"
     },
@@ -428,7 +446,10 @@
           48.6778947,
           2.1745235,
           48.6757048
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://www.westfield.com/fr/france/ulis2"
+        }
       },
       "id": "nOhrI"
     },
@@ -523,7 +544,10 @@
           48.6929848,
           2.1740966,
           48.6868145
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://www.destination-paris-saclay.com/fr/fiche/patrimoine-culturel/parc-paul-loridant-les-ulis_TFO5275934/"
+        }
       },
       "id": "GsVVA"
     },
@@ -649,7 +673,10 @@
         "state": "Île-de-France",
         "country": "France",
         "postcode": "91940",
-        "countrycode": "FR"
+        "countrycode": "FR",
+        "_umap_options": {
+          "outlink": "https://www.lesulis.fr/96/sortir/culture/le-radazik.htm"
+        }
       },
       "id": "hMW0d"
     },
@@ -682,7 +709,10 @@
           48.6823773,
           2.170095,
           48.6819317
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://www.lesulis.fr/95/sortir/culture/l-espace-culturel-boris-vian.htm"
+        }
       },
       "id": "aXsCa"
     },
