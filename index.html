@@ -521,8 +521,10 @@ const CONFIG = {
 
   // Photos : chaîne simple ou { src, title } pour afficher une légende
   photos: [
+    { src: 'photos/portail1.jpg', title: 'Entrée de la maison' },
     { src: 'photos/jardin1.jpg',    title: "L'arrière du jardin" },
     { src: 'photos/jardin2.jpg',    title: "L'entrée de la maison depuis le jardin" },
+    { src: 'photos/bassin1.jpg', title: "Le grand bassin du jardin" },
     { src: 'photos/parc_nord1.jpg', title: 'Au Parc Nord des Ulis' },
     { src: 'photos/potager_neige.jpg', title: 'Le potager en hiver' },
     { src: 'photos/cabanon_neige.jpg', title: 'Le cabanon sous la neige' },
@@ -620,7 +622,6 @@ if (CONFIG.photos.length) {
   window.addEventListener('scroll', update, { passive: true });
   update();
 }());
-
 // ── MAP ───────────────────────────────────────────────────────────────
 (function () {
   var map = L.map('map', {
