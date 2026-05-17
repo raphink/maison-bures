@@ -258,7 +258,10 @@
         "state": "Île-de-France",
         "country": "France",
         "postcode": "91440",
-        "countrycode": "FR"
+        "countrycode": "FR",
+        "_umap_options": {
+          "outlink": "https://www.bonjour-ratp.fr/lignes-bus/rd-saclay-ligne-4654-c02817/"
+        }
       },
       "id": "tfO4C"
     },
@@ -286,7 +289,10 @@
         "state": "Île-de-France",
         "country": "France",
         "postcode": "91440",
-        "countrycode": "FR"
+        "countrycode": "FR",
+        "_umap_options": {
+          "outlink": "https://www.bonjour-ratp.fr/lignes-bus/rd-saclay-ligne-4654-c02817/"
+        }
       },
       "id": "DfFpf"
     },
@@ -613,7 +619,10 @@
           48.698155,
           2.164663,
           48.697726
-        ]
+        ],
+        "_umap_options": {
+          "outlink": "https://www.bures-sur-yvette.fr/la-ludotheque-burlututu/"
+        }
       },
       "id": "lqtR2"
     },
