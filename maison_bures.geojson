@@ -40,19 +40,212 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.1574408,
-          48.7004578
+          2.4046531,
+          48.6333577
         ]
       },
       "properties": {
         "osm_type": "W",
-        "osm_id": 220254689,
-        "osm_key": "amenity",
-        "osm_value": "school",
+        "osm_id": 1332849920,
+        "osm_key": "highway",
+        "osm_value": "motorway",
+        "type": "street",
+        "name": "Accès autoroute A6 (Lyon)",
+        "city": "Ris-Orangis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91130",
+        "countrycode": "FR",
+        "extent": [
+          2.4039435,
+          48.6338062,
+          2.4053627,
+          48.6329092
+        ]
+      },
+      "id": "dFyRn"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1937891,
+          48.6696815
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 404923974,
+        "osm_key": "highway",
+        "osm_value": "motorway",
+        "type": "street",
+        "name": "Accès autoroute A10 (Bordeaux)",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1936574,
+          48.669828,
+          2.1939208,
+          48.6695349
+        ]
+      },
+      "id": "18Nnk"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1601321,
+          48.6856599
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 5218818015,
+        "osm_key": "highway",
+        "osm_value": "bus_stop",
         "type": "house",
-        "housenumber": "51",
-        "name": "Collège La Guyonnerie",
-        "street": "Rue du Docteur Collé",
+        "name": "Beaumontel - Bus pour RER",
+        "street": "Avenue Les Ulis",
+        "locality": "Montjay",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR",
+        "_umap_options": {
+          "outlink": "https://www.bonjour-ratp.fr/arrets-bus/beaumontel+bures-sur-yvette-91440/"
+        }
+      },
+      "id": "DfFpf"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1632856,
+          48.6957636
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 5836393507,
+        "osm_key": "railway",
+        "osm_value": "stop",
+        "type": "house",
+        "name": "Bures-sur-Yvette - RER B",
+        "street": "Boulevard Georges Seneuze",
+        "locality": "Bures Cottage",
+        "district": "Montjay",
+        "city": "Bures-sur-Yvette",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91440",
+        "countrycode": "FR"
+      },
+      "id": "uwld9"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1719322,
+          48.6767911
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 77023424,
+        "osm_key": "shop",
+        "osm_value": "mall",
+        "type": "house",
+        "name": "Centre Commercial Régional Les Ulis 2",
+        "street": "Allée 28-29",
+        "district": "Villeziers",
+        "city": "Saint-Jean-de-Beauregard",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1689071,
+          48.6778947,
+          2.1745235,
+          48.6757048
+        ],
+        "_umap_options": {
+          "outlink": "https://www.westfield.com/fr/france/ulis2"
+        }
+      },
+      "id": "nOhrI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1698638,
+          48.682155
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 77574300,
+        "osm_key": "amenity",
+        "osm_value": "theatre",
+        "type": "house",
+        "name": "Centre culturel Boris Vian",
+        "street": "Esplanade de la République",
+        "district": "Périgord",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1696047,
+          48.6823773,
+          2.170095,
+          48.6819317
+        ],
+        "_umap_options": {
+          "outlink": "https://www.lesulis.fr/95/sortir/culture/l-espace-culturel-boris-vian.htm"
+        }
+      },
+      "id": "aXsCa"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1644388,
+          48.6979395
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 90740997,
+        "osm_key": "amenity",
+        "osm_value": "theatre",
+        "type": "house",
+        "housenumber": "1",
+        "name": "Centre culturel Marcel Pagnol - Ludothèque",
+        "street": "Rue Descartes",
         "district": "Montjay",
         "city": "Bures-sur-Yvette",
         "county": "Essonne",
@@ -61,16 +254,16 @@
         "postcode": "91440",
         "countrycode": "FR",
         "extent": [
-          2.1567573,
-          48.7013219,
-          2.1582367,
-          48.7000712
+          2.164175,
+          48.698155,
+          2.164663,
+          48.697726
         ],
         "_umap_options": {
-          "outlink": "https://clg-laguyonnerie-bures.ac-versailles.fr/"
+          "outlink": "https://www.bures-sur-yvette.fr/la-ludotheque-burlututu/"
         }
       },
-      "id": "6Ruc4"
+      "id": "lqtR2"
     },
     {
       "type": "Feature",
@@ -114,64 +307,37 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.164585,
-          48.6759105
+          2.1574408,
+          48.7004578
         ]
       },
       "properties": {
         "osm_type": "W",
-        "osm_id": 164926493,
+        "osm_id": 220254689,
         "osm_key": "amenity",
         "osm_value": "school",
         "type": "house",
-        "name": "Lycée de l'Essouriau",
-        "street": "Rue de l'Adour",
-        "district": "Béarn",
-        "city": "Les Ulis",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91940",
-        "countrycode": "FR",
-        "extent": [
-          2.1615496,
-          48.6766627,
-          2.1671176,
-          48.6750015
-        ],
-        "_umap_options": {
-          "outlink": "https://lyceedelessouriau.fr/"
-        }
-      },
-      "id": "HRTLs"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1632856,
-          48.6957636
-        ]
-      },
-      "properties": {
-        "osm_type": "N",
-        "osm_id": 5836393507,
-        "osm_key": "railway",
-        "osm_value": "stop",
-        "type": "house",
-        "name": "Bures-sur-Yvette - RER B",
-        "street": "Boulevard Georges Seneuze",
-        "locality": "Bures Cottage",
+        "housenumber": "51",
+        "name": "Collège La Guyonnerie",
+        "street": "Rue du Docteur Collé",
         "district": "Montjay",
         "city": "Bures-sur-Yvette",
         "county": "Essonne",
         "state": "Île-de-France",
         "country": "France",
         "postcode": "91440",
-        "countrycode": "FR"
+        "countrycode": "FR",
+        "extent": [
+          2.1567573,
+          48.7013219,
+          2.1582367,
+          48.7000712
+        ],
+        "_umap_options": {
+          "outlink": "https://clg-laguyonnerie-bures.ac-versailles.fr/"
+        }
       },
-      "id": "uwld9"
+      "id": "6Ruc4"
     },
     {
       "type": "Feature",
@@ -209,6 +375,135 @@
         }
       },
       "id": "MCvHN"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1667869,
+          48.6827832
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 1611009440,
+        "osm_key": "highway",
+        "osm_value": "bus_stop",
+        "type": "house",
+        "name": "Hautes Plaines - Bus pour Orsay, Courtaboeuf, Massy",
+        "street": "Avenue du Berry",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "_umap_options": {
+          "outlink": "https://www.bonjour-ratp.fr/arrets-bus/hautes-plaines+les-ulis-91940/"
+        }
+      },
+      "id": "dH5vM"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1879471,
+          48.69522
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 65655071,
+        "osm_key": "building",
+        "osm_value": "school",
+        "type": "house",
+        "name": "Lycée Blaise Pascal - Prépas scientifiques",
+        "street": "Rue Alexander Fleming",
+        "locality": "Orsay Centre",
+        "district": "La Bouvêche",
+        "city": "Orsay",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91400",
+        "countrycode": "FR",
+        "extent": [
+          2.1877321,
+          48.6958996,
+          2.1881942,
+          48.6944709
+        ],
+        "_umap_options": {
+          "outlink": "https://lyc-pascal-orsay.ac-versailles.fr/"
+        }
+      },
+      "id": "Ktr7y"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.164585,
+          48.6759105
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 164926493,
+        "osm_key": "amenity",
+        "osm_value": "school",
+        "type": "house",
+        "name": "Lycée de l'Essouriau",
+        "street": "Rue de l'Adour",
+        "district": "Béarn",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1615496,
+          48.6766627,
+          2.1671176,
+          48.6750015
+        ],
+        "_umap_options": {
+          "outlink": "https://lyceedelessouriau.fr/"
+        }
+      },
+      "id": "HRTLs"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1701132,
+          48.6830407
+        ]
+      },
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 1241512106,
+        "osm_key": "amenity",
+        "osm_value": "marketplace",
+        "type": "house",
+        "name": "Marché des Ulis",
+        "street": "Place de la Liberté",
+        "district": "Bourgogne",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR"
+      },
+      "id": "7VCfH"
     },
     {
       "type": "Feature",
@@ -282,31 +577,100 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.1601321,
-          48.6856599
+          2.1670349,
+          48.6897276
+        ]
+      },
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 147125921,
+        "osm_key": "leisure",
+        "osm_value": "park",
+        "type": "other",
+        "name": "Parc Nord",
+        "district": "Champagne",
+        "city": "Les Ulis",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91940",
+        "countrycode": "FR",
+        "extent": [
+          2.1614058,
+          48.6929848,
+          2.1740966,
+          48.6868145
+        ],
+        "_umap_options": {
+          "outlink": "https://www.destination-paris-saclay.com/fr/fiche/patrimoine-culturel/parc-paul-loridant-les-ulis_TFO5275934/"
+        }
+      },
+      "id": "GsVVA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1705695,
+          48.6826214
         ]
       },
       "properties": {
         "osm_type": "N",
-        "osm_id": 5218818015,
-        "osm_key": "highway",
-        "osm_value": "bus_stop",
+        "osm_id": 10299245709,
+        "osm_key": "amenity",
+        "osm_value": "theatre",
         "type": "house",
-        "name": "Beaumontel - Bus pour RER",
-        "street": "Avenue Les Ulis",
-        "locality": "Montjay",
-        "district": "Montjay",
-        "city": "Bures-sur-Yvette",
+        "name": "Radazik - Salle de concerts",
+        "street": "Place de la Liberté",
+        "district": "Bourgogne",
+        "city": "Les Ulis",
         "county": "Essonne",
         "state": "Île-de-France",
         "country": "France",
-        "postcode": "91440",
+        "postcode": "91940",
         "countrycode": "FR",
         "_umap_options": {
-          "outlink": "https://www.bonjour-ratp.fr/arrets-bus/beaumontel+bures-sur-yvette-91440/"
+          "outlink": "https://www.lesulis.fr/96/sortir/culture/le-radazik.htm"
         }
       },
-      "id": "DfFpf"
+      "id": "hMW0d"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1728617,
+          48.7102947
+        ]
+      },
+      "properties": {
+        "osm_type": "R",
+        "osm_id": 562947,
+        "osm_key": "building",
+        "osm_value": "university",
+        "type": "house",
+        "housenumber": "640",
+        "name": "Université Paris-Saclay",
+        "street": "6 rue Sophie Germain",
+        "locality": "Belvedère",
+        "district": "Corbeville",
+        "city": "Orsay",
+        "county": "Essonne",
+        "state": "Île-de-France",
+        "country": "France",
+        "postcode": "91400",
+        "countrycode": "FR",
+        "extent": [
+          2.172741,
+          48.7109602,
+          2.173812,
+          48.7095827
+        ]
+      },
+      "id": "Fg2VH"
     },
     {
       "type": "Feature",
@@ -350,141 +714,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.1728617,
-          48.7102947
-        ]
-      },
-      "properties": {
-        "osm_type": "R",
-        "osm_id": 562947,
-        "osm_key": "building",
-        "osm_value": "university",
-        "type": "house",
-        "housenumber": "640",
-        "name": "Université Paris-Saclay",
-        "street": "6 rue Sophie Germain",
-        "locality": "Belvedère",
-        "district": "Corbeville",
-        "city": "Orsay",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91400",
-        "countrycode": "FR",
-        "extent": [
-          2.172741,
-          48.7109602,
-          2.173812,
-          48.7095827
-        ]
-      },
-      "id": "Fg2VH"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1879471,
-          48.69522
-        ]
-      },
-      "properties": {
-        "osm_type": "W",
-        "osm_id": 65655071,
-        "osm_key": "building",
-        "osm_value": "school",
-        "type": "house",
-        "name": "Lycée Blaise Pascal - Prépas scientifiques",
-        "street": "Rue Alexander Fleming",
-        "locality": "Orsay Centre",
-        "district": "La Bouvêche",
-        "city": "Orsay",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91400",
-        "countrycode": "FR",
-        "extent": [
-          2.1877321,
-          48.6958996,
-          2.1881942,
-          48.6944709
-        ],
-        "_umap_options": {
-          "outlink": "https://lyc-pascal-orsay.ac-versailles.fr/"
-        }
-      },
-      "id": "Ktr7y"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1719322,
-          48.6767911
-        ]
-      },
-      "properties": {
-        "osm_type": "W",
-        "osm_id": 77023424,
-        "osm_key": "shop",
-        "osm_value": "mall",
-        "type": "house",
-        "name": "Centre Commercial Régional Les Ulis 2",
-        "street": "Allée 28-29",
-        "district": "Villeziers",
-        "city": "Saint-Jean-de-Beauregard",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91940",
-        "countrycode": "FR",
-        "extent": [
-          2.1689071,
-          48.6778947,
-          2.1745235,
-          48.6757048
-        ],
-        "_umap_options": {
-          "outlink": "https://www.westfield.com/fr/france/ulis2"
-        }
-      },
-      "id": "nOhrI"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1701132,
-          48.6830407
-        ]
-      },
-      "properties": {
-        "osm_type": "N",
-        "osm_id": 1241512106,
-        "osm_key": "amenity",
-        "osm_value": "marketplace",
-        "type": "house",
-        "name": "Marché des Ulis",
-        "street": "Place de la Liberté",
-        "district": "Bourgogne",
-        "city": "Les Ulis",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91940",
-        "countrycode": "FR"
-      },
-      "id": "7VCfH"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.1526019,
           48.6789005
         ]
@@ -521,117 +750,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.1670349,
-          48.6897276
+          2.1580459,
+          48.6920942
         ]
       },
       "properties": {
         "osm_type": "W",
-        "osm_id": 147125921,
-        "osm_key": "leisure",
-        "osm_value": "park",
-        "type": "other",
-        "name": "Parc Nord",
-        "district": "Champagne",
-        "city": "Les Ulis",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91940",
-        "countrycode": "FR",
-        "extent": [
-          2.1614058,
-          48.6929848,
-          2.1740966,
-          48.6868145
-        ],
-        "_umap_options": {
-          "outlink": "https://www.destination-paris-saclay.com/fr/fiche/patrimoine-culturel/parc-paul-loridant-les-ulis_TFO5275934/"
-        }
-      },
-      "id": "GsVVA"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1937891,
-          48.6696815
-        ]
-      },
-      "properties": {
-        "osm_type": "W",
-        "osm_id": 404923974,
-        "osm_key": "highway",
-        "osm_value": "motorway",
-        "type": "street",
-        "name": "Accès autoroute A10 (Bordeaux)",
-        "city": "Les Ulis",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91940",
-        "countrycode": "FR",
-        "extent": [
-          2.1936574,
-          48.669828,
-          2.1939208,
-          48.6695349
-        ]
-      },
-      "id": "18Nnk"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.4046531,
-          48.6333577
-        ]
-      },
-      "properties": {
-        "osm_type": "W",
-        "osm_id": 1332849920,
-        "osm_key": "highway",
-        "osm_value": "motorway",
-        "type": "street",
-        "name": "Accès autoroute A6 (Lyon)",
-        "city": "Ris-Orangis",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91130",
-        "countrycode": "FR",
-        "extent": [
-          2.4039435,
-          48.6338062,
-          2.4053627,
-          48.6329092
-        ]
-      },
-      "id": "dFyRn"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1644388,
-          48.6979395
-        ]
-      },
-      "properties": {
-        "osm_type": "W",
-        "osm_id": 90740997,
+        "osm_id": 147467727,
         "osm_key": "amenity",
-        "osm_value": "theatre",
+        "osm_value": "school",
         "type": "house",
-        "housenumber": "1",
-        "name": "Centre culturel Marcel Pagnol - Ludothèque",
-        "street": "Rue Descartes",
-        "district": "Montjay",
+        "name": "École primaire Léopold Gardey",
+        "street": "Avenue Édouard Herriot",
+        "locality": "Bures-Royaume",
+        "district": "Bures-Montjay",
         "city": "Bures-sur-Yvette",
         "county": "Essonne",
         "state": "Île-de-France",
@@ -639,111 +771,16 @@
         "postcode": "91440",
         "countrycode": "FR",
         "extent": [
-          2.164175,
-          48.698155,
-          2.164663,
-          48.697726
+          2.1567804,
+          48.6929708,
+          2.1592372,
+          48.6912829
         ],
         "_umap_options": {
-          "outlink": "https://www.bures-sur-yvette.fr/la-ludotheque-burlututu/"
+          "outlink": "https://www.education.gouv.fr/annuaire/91440/bures-sur-yvette/ecole/0910361y/ecole-elementaire-leopold-gardey.html"
         }
       },
-      "id": "lqtR2"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1705695,
-          48.6826214
-        ]
-      },
-      "properties": {
-        "osm_type": "N",
-        "osm_id": 10299245709,
-        "osm_key": "amenity",
-        "osm_value": "theatre",
-        "type": "house",
-        "name": "Radazik - Salle de concerts",
-        "street": "Place de la Liberté",
-        "district": "Bourgogne",
-        "city": "Les Ulis",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91940",
-        "countrycode": "FR",
-        "_umap_options": {
-          "outlink": "https://www.lesulis.fr/96/sortir/culture/le-radazik.htm"
-        }
-      },
-      "id": "hMW0d"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1698638,
-          48.682155
-        ]
-      },
-      "properties": {
-        "osm_type": "W",
-        "osm_id": 77574300,
-        "osm_key": "amenity",
-        "osm_value": "theatre",
-        "type": "house",
-        "name": "Centre culturel Boris Vian",
-        "street": "Esplanade de la République",
-        "district": "Périgord",
-        "city": "Les Ulis",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91940",
-        "countrycode": "FR",
-        "extent": [
-          2.1696047,
-          48.6823773,
-          2.170095,
-          48.6819317
-        ],
-        "_umap_options": {
-          "outlink": "https://www.lesulis.fr/95/sortir/culture/l-espace-culturel-boris-vian.htm"
-        }
-      },
-      "id": "aXsCa"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.1667869,
-          48.6827832
-        ]
-      },
-      "properties": {
-        "osm_type": "N",
-        "osm_id": 1611009440,
-        "osm_key": "highway",
-        "osm_value": "bus_stop",
-        "type": "house",
-        "name": "Hautes Plaines - Bus pour Orsay, Courtaboeuf, Massy",
-        "street": "Avenue du Berry",
-        "city": "Les Ulis",
-        "county": "Essonne",
-        "state": "Île-de-France",
-        "country": "France",
-        "postcode": "91940",
-        "countrycode": "FR",
-        "_umap_options": {
-          "outlink": "https://www.bonjour-ratp.fr/arrets-bus/hautes-plaines+les-ulis-91940/"
-        }
-      },
-      "id": "dH5vM"
+      "id": "Q9Kws"
     }
   ]
 }
