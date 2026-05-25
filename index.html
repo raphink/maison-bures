@@ -711,6 +711,23 @@ if (CONFIG.photos.length) {
     .bindPopup('<strong>Maison à vendre</strong><br>Bures-sur-Yvette, quartier Montjay')
     .openPopup();
 
+  // Bouton recentrer ────────────────────────────────────────────────
+  var recenterBtn = document.createElement('a');
+  recenterBtn.title = 'Recentrer sur la maison';
+  recenterBtn.innerHTML = '🏡';
+  recenterBtn.href = '#';
+  recenterBtn.style.cssText = 'font-size:16px;display:flex;align-items:center;justify-content:center;';
+  recenterBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    map.setView([CONFIG.lat, CONFIG.lng], CONFIG.zoom);
+  });
+  var recenterBar = document.createElement('div');
+  recenterBar.className = 'leaflet-bar leaflet-control';
+  recenterBar.style.marginTop = '5px';
+  recenterBar.appendChild(recenterBtn);
+  document.querySelector('#map .leaflet-top.leaflet-left').appendChild(recenterBar);
+
   // POI depuis GeoJSON local ────────────────────────────────────────
   // Icônes dérivées de osm_key/osm_value ; les propriétés uMap
   // « category » et « icon » (emoji) ont priorité si présentes.
